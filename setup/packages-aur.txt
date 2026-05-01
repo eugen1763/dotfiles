@@ -1,0 +1,12 @@
+# AUR packages to install via yay
+# Exclude: rider, ghidra, llm stuff, openclaw
+
+ags
+discord_arch_electron
+elephant
+elephant-calc
+elephant-desktopapplications
+elephant-menus
+elephant-symbols
+walker-git
+yay-bin

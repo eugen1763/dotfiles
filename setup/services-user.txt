@@ -1,0 +1,4 @@
+# User services to enable via systemctl --user
+# Exclude: llm stuff, openclaw
+
+elephant
