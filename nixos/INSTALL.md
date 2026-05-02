@@ -48,9 +48,9 @@
 On your Arch desktop (or any working computer):
 
 ```bash
-# Download the NixOS GNOME ISO (has a graphical environment, easier for WiFi setup)
+# Download the NixOS Minimal ISO (no GUI, smaller, TUI-based WiFi setup)
 curl -L -o nixos.iso \
-  https://channels.nixos.org/nixos-24.11/latest-nixos-gnome-24.11-x86_64-linux.iso
+  https://channels.nixos.org/nixos-24.11/latest-nixos-minimal-24.11-x86_64-linux.iso
 
 # Find your USB device (be careful! it's usually /dev/sdX or /dev/nvmeXn1)
 lsblk
@@ -68,7 +68,7 @@ sudo dd if=nixos.iso of=/dev/sdX bs=4M status=progress oflag=sync
 1. Plug the USB into your laptop.
 2. Power on and enter the boot menu (usually `F12`, `F10`, or `Esc`).
 3. Select the USB drive and boot into **NixOS Installer**.
-4. You will land in a live GNOME desktop.
+4. You will land at a TTY (text console) with a root shell.
 
 ---
 
@@ -76,13 +76,56 @@ sudo dd if=nixos.iso of=/dev/sdX bs=4M status=progress oflag=sync
 
 If you are using Ethernet, skip this step.
 
-1. Click the WiFi icon in the top-right corner of GNOME.
-2. Select your network and enter the password.
-3. Open a terminal (press `Super` and type "terminal").
-4. Verify connection:
+The minimal ISO has no GUI, so we use a TUI (text user interface) to connect to WiFi.
+
+### Method A: `nmtui` (Recommended — easiest)
+
+`nmtui` is a friendly menu-driven tool. Use arrow keys and Enter to navigate.
+
+```bash
+# Start the NetworkManager TUI
+nmtui
+```
+
+1. Select **"Activate a connection"**
+2. Highlight your WiFi network and press **Enter**
+3. Enter your WiFi password when prompted
+4. Press **Esc** to exit
+5. Verify connection:
    ```bash
    ping -c 3 google.com
    ```
+
+### Method B: `iwctl` (Minimal — faster)
+
+`iwctl` is a lightweight command-line tool. Good if `nmtui` is not available.
+
+```bash
+# Enter the iwd interactive shell
+iwctl
+
+# List WiFi devices
+[iwd]# device list
+
+# Scan for networks (replace wlan0 with your actual device name)
+[iwd]# station wlan0 scan
+[iwd]# station wlan0 get-networks
+
+# Connect to your network (replace "MyNetwork" with your actual SSID)
+[iwd]# station wlan0 connect "MyNetwork"
+
+# Enter your WiFi password when prompted, then exit
+[iwd]# quit
+
+# Verify connection
+ping -c 3 google.com
+```
+
+> **Tip:** If `nmtui` is not found, you can install it temporarily with:
+> ```bash
+> nix-shell -p networkmanager
+> ```
+> Then run `nmtui` again.
 
 ---
 
@@ -342,7 +385,7 @@ There is no recovery. You must reinstall. Always keep backups.
 
 ### "WiFi doesn't work after install"
 
-Some Intel WiFi cards need firmware that might not be included in the minimal ISO. If you used the GNOME ISO, it should work. If not, connect via Ethernet temporarily and run:
+Some Intel WiFi cards need firmware that might not be included in the minimal ISO. If WiFi doesn't work after install, connect via Ethernet temporarily and run:
 
 ```bash
 sudo nixos-rebuild switch --flake ~/.config/nixos#finns-clanker-station
