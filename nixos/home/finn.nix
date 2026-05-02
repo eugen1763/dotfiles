@@ -63,16 +63,13 @@
 
     # Fonts
     noto-fonts
-    noto-fonts-emoji
     dejavu_fonts
     jetbrains-mono
     font-awesome
-    otf-font-awesome
 
     # Misc
     cabextract
     os-prober
-    reflector
     sshfs
   ];
 

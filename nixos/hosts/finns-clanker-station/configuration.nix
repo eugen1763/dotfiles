@@ -93,7 +93,6 @@
     enable = true;
     extraPackages = with pkgs; [
       intel-media-driver
-      vaapiVdpau
       libvdpau-va-gl
     ];
   };
@@ -109,7 +108,6 @@
     pulse.enable = true;
     wireplumber.enable = true;
   };
-  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
   # Bluetooth
@@ -156,6 +154,8 @@
     dates = "weekly";
     options = "--delete-older-than 30d";
   };
+
+  nixpkgs.config.allowUnfree = true;
 
   # ============================================================================
   # System State Version (do not change unless you know what you're doing)
