@@ -139,7 +139,7 @@ mount /dev/sda1 /mnt/boot
 ### Install Essential Packages
 ```bash
 pacstrap -K /mnt base base-devel linux linux-firmware linux-headers \
-  btrfs-progs intel-ucode   # or amd-ucode
+  btrfs-progs intel-ucode archlinux-keyring  # or amd-ucode
 ```
 
 ### Generate fstab
@@ -234,6 +234,10 @@ EOF
 
 ### Install Network Tools
 ```bash
+# If you get "PGP signature" errors, fix the keyring first:
+pacman-key --init && pacman-key --populate archlinux
+pacman -Sy archlinux-keyring
+
 pacman -S networkmanager
 systemctl enable NetworkManager
 ```
