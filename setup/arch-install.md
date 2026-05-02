@@ -51,8 +51,46 @@ lsblk
 ```
 
 ### Partition with fdisk (UEFI + LUKS + Btrfs)
+
+Open fdisk on your target disk:
 ```bash
 fdisk /dev/nvme0n1   # or /dev/sda
+```
+
+**fdisk prompt reference:**
+| Command | Action                                  |
+|---------|-----------------------------------------|
+| `m`     | Show help / all commands                |
+| `p`     | Print current partition table           |
+| `g`     | Create new GPT partition table          |
+| `n`     | Create new partition                    |
+| `t`     | Change partition type                   |
+| `d`     | Delete partition                        |
+| `w`     | Write changes to disk and exit          |
+| `q`     | Quit without saving                     |
+
+**Step-by-step (interactive):**
+```
+Command (m for help): g          # create fresh GPT table
+Command (m for help): n          # EFI partition
+Partition number (1-128, default 1): <Enter>
+First sector (2048-..., default 2048): <Enter>
+Last sector, +/-sectors or +/-size: +1G
+
+Command (m for help): t          # set EFI type
+Partition type or alias (type L to list): 1
+
+Command (m for help): n          # root partition
+Partition number (2-128, default 2): <Enter>
+First sector: <Enter>
+Last sector: <Enter>             # rest of disk
+
+Command (m for help): w          # write and exit
+```
+
+**One-liner (non-interactive):**
+```bash
+echo -e "g\nn\n\n\n+1G\nt\n1\nn\n\n\n\nw" | fdisk /dev/sda
 ```
 
 **Recommended layout:**
