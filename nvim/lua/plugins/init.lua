@@ -28,6 +28,7 @@ return {
 		dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
 		keys = {
 			{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Telescope find files" },
+			{ "<leader>fW", "<cmd>Telescope live_grep<cr>", desc = "Telescope live grep" },
 			{ "<leader><leader>", "<cmd>Telescope find_files<cr>", desc = "Telescope find files" },
 		},
 		config = function()

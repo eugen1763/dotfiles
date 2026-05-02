@@ -3,7 +3,7 @@
 {
   home.username = "finn";
   home.homeDirectory = "/home/finn";
-  home.stateVersion = "24.11";
+  home.stateVersion = "25.11";
 
   # ============================================================================
   # Packages
@@ -29,10 +29,7 @@
     ags
 
     # Terminal & Shell
-    kitty
-    fish
-    starship
-    neovim
+    # kitty, fish, starship, neovim are installed via programs.* below
     lf
     ncdu
     ripgrep
