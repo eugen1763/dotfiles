@@ -48,8 +48,7 @@
     # Dev tools
     zig
     nodejs
-    nodePackages.npm
-    nodePackages.typescript
+    # TypeScript and npm are available via the bundled npm in nodejs
     python3
     docker-compose
     buildkit
