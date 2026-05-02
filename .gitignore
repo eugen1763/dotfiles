@@ -1,0 +1,50 @@
+# IDE
+.idea/
+JetBrains/*
+
+# Application Caches and Temporary Files
+Signal/*
+chromium/*
+
+# User-specific Runtime Data
+dconf/user
+pulse/cookie
+
+# Telemetry
+go/telemetry/
+
+# Systemd User Session
+systemd/user/
+
+# Ephemeral Configuration
+Signal/ephemeral.json
+
+# Trust Tokens
+Signal/Trust Tokens
+Signal/Trust Tokens-journal
+
+# Browser Metadata and State
+chromium/Local State
+chromium/Variations
+chromium/Network Persistent State
+chromium/First Run
+chromium/Last Version
+chromium/BrowserMetrics/
+chromium/Shared Dictionary/
+hypr/monitors.conf
+discord/
+gh/
+ghidra/
+go/
+gtk-3.0/
+gtk-4.0/
+handball-planer/
+htop/
+jgit/
+opencode/
+qalculate/
+sqlit/
+uv/
+fish/fish_variables
+mimeapps.list
+pavucontrol.ini
