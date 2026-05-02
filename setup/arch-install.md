@@ -101,15 +101,15 @@ echo -e "g\nn\n\n\n+1G\nt\n1\nn\n\n\n\nw" | fdisk /dev/sda
 
 ### Format Partitions
 ```bash
-# EFI partition
+# 1. EFI partition
 mkfs.fat -F32 /dev/sda1
 
-# LUKS encrypted root
-cryptsetup luksFormat /dev/sda2
+# 2. LUKS container
+cryptsetup luksFormat --type luks2 /dev/sda2
 cryptsetup open /dev/sda2 cryptroot
 
-# Btrfs on LUKS
-mkfs.btrfs /dev/mapper/cryptroot
+# 3. Filesystem inside LUKS (MANDATORY — without this the next section fails)
+mkfs.btrfs -f /dev/mapper/cryptroot
 ```
 
 ### Create Btrfs Subvolumes
