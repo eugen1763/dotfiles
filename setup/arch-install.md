@@ -156,6 +156,9 @@ genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 ```
 
+> **No text editor?** The base system only has `echo`/`cat` available by default.
+> Install one: `pacman -S vim` (or `nano`), or use the `sed`/heredoc approaches below.
+
 ### Time & Locale
 ```bash
 ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
@@ -172,18 +175,20 @@ echo "myhostname" > /etc/hostname
 ```
 
 ### /etc/hosts
-```
+```bash
+cat > /etc/hosts << 'EOF'
 127.0.0.1   localhost
 ::1         localhost
 127.0.1.1   myhostname.localdomain myhostname
+EOF
 ```
 
 ### Initramfs (for LUKS encryption)
-Edit `/etc/mkinitcpio.conf`:
+Replace the HOOKS line (no editor needed):
+```bash
+sed -i 's/^HOOKS=.*/HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block encrypt filesystems fsck)/' /etc/mkinitcpio.conf
 ```
-HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block encrypt filesystems fsck)
-```
-Then:
+Then rebuild:
 ```bash
 mkinitcpio -P
 ```
@@ -202,23 +207,26 @@ bootctl --path=/boot install
 ```
 
 Create `/boot/loader/loader.conf`:
-```
+```bash
+cat > /boot/loader/loader.conf << 'EOF'
 default arch
 timeout 3
 console-mode keep
 editor no
+EOF
 ```
 
-Create `/boot/loader/entries/arch.conf`:
-```
+Create `/boot/loader/entries/arch.conf` (replace `<ROOT_UUID>` with your actual UUID):
+```bash
+ROOT_UUID=$(blkid -s UUID -o value /dev/sda2)
+cat > /boot/loader/entries/arch.conf << EOF
 title   Arch Linux
 linux   /vmlinuz-linux
 initrd  /intel-ucode.img
 initrd  /initramfs-linux.img
-options cryptdevice=UUID=<ROOT_UUID>:cryptroot root=/dev/mapper/cryptroot rootflags=subvol=@ rw quiet
+options cryptdevice=UUID=$ROOT_UUID:cryptroot root=/dev/mapper/cryptroot rootflags=subvol=@ rw quiet
+EOF
 ```
-
-Get UUID with `blkid /dev/sda2`.
 
 ---
 
