@@ -2,7 +2,6 @@
 # Exclude: rider, ghidra, llm stuff, openclaw
 
 ags
-discord_arch_electron
 elephant
 elephant-calc
 elephant-desktopapplications

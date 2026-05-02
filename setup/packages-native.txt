@@ -60,10 +60,8 @@ rtkit
 signal-desktop
 slurp
 sshfs
-steam
 sudo
 swayidle
-telegram-desktop
 tree-sitter-cli
 ttf-dejavu
 ttf-jetbrains-mono-nerd
