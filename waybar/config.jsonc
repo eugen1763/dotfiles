@@ -35,6 +35,12 @@
         "layer": "top",
         "exclusive": false,
         "height": 36,
+        // Shrink this overlay surface to a centred band via large side margins,
+        // so it ONLY covers the clock. A full-width transparent bar would sit on
+        // top of the main bar and swallow clicks meant for the left/right islands.
+        // DP-6 is 2560 wide: (2560 - 500) / 2 = 1030 margin each side -> 500px band.
+        "margin-left": 1030,
+        "margin-right": 1030,
         "spacing": 4,
         // align with the main islands: centre margin-top must equal -height
         // (cancels the main bar's height + its own margin-top offset).
