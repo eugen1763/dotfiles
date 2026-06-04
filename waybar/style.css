@@ -1,111 +1,147 @@
+/* ============================================================
+   ICE HUD  —  sci-fi heads-up display theme for Waybar
+   deep blue-black · dominant electric cyan · thin bright lines
+   square edges · monospace
+   ============================================================ */
+
+@define-color bg        #06101a;
+@define-color surface   #0a1826;
+@define-color elevated  #0e2233;
+@define-color hairline  #143047;
+@define-color line      #1c4a63;
+@define-color cyan      #2de2ff;
+@define-color cyandim   #13889c;
+@define-color text      #bfe9f5;
+@define-color textdim   #5b7a8a;
+@define-color alert     #ff3b5c;
+
 * {
-    font-family: "JetBrains Mono", "Fira Code", monospace, FontAwesome;
+    /* Nerd Font first (covers most glyphs), then Symbols + Font Awesome
+       fallbacks so EVERY icon in the config resolves. */
+    font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font", "Font Awesome 7 Free", "JetBrains Mono", monospace;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 600;
+    border-radius: 0;        /* square everything */
+    min-height: 0;
 }
 
+/* the bar surface is invisible — only the islands read */
 window#waybar {
-    background-color: rgba(26, 32, 40, 0.85);
-    border: 1px solid rgba(255, 126, 179, 0.15);
-    border-radius: 8px;
-    color: #e8a0b4;
-
-    margin: 10px;
-    padding: 0px 4px;
-
-    transition-property: background-color;
-    transition-duration: .3s;
-}
-
-window#waybar.hidden {
-    opacity: 0.1;
-}
-
-button {
-    box-shadow: none;
+    background-color: transparent;
     border: none;
-    border-radius: 6px;
 }
 
-button:hover {
-    background: rgba(255, 126, 179, 0.12);
+window#waybar.hidden { opacity: 0.1; }
+
+/* ---- Islands ------------------------------------------------
+   LEFT + RIGHT ride the "main" bar, MIDDLE rides the "center" bar.
+   Each is a dark HUD slab with ONE clean, uniform cyan frame
+   (single width on every side) plus a soft outer glow — no inset
+   line, no mixed border widths, so there is no "double border". */
+window#waybar.main   .modules-left,
+window#waybar.main   .modules-right,
+window#waybar.center .modules-center {
+    background-color: @surface;
+    border: 1px solid @cyandim;
+    box-shadow: 0 0 10px rgba(45, 226, 255, 0.14);
+    padding: 0 4px;
+    margin: 0 2px;
+}
+
+/* empty centre of the main bar must not paint a slab */
+window#waybar.main .modules-center {
+    background-color: transparent;
+    border: none;
     box-shadow: none;
 }
 
-#clock,
-#battery,
-#cpu,
-#memory,
-#disk,
-#temperature,
-#backlight,
-#network,
-#pulseaudio,
-#wireplumber,
-#custom-media,
-#tray,
-#mode,
-#idle_inhibitor,
-#scratchpad,
-#power-profiles-daemon,
-#mpd,
-#custom-power,
-#keyboard-state,
-#language {
-    padding: 2px 8px;
-    margin: 2px 2px;
-    border-radius: 6px;
-    background-color: rgba(255, 126, 179, 0.06);
-    color: #e8a0b4;
+/* ---- Module cells ------------------------------------------- */
+#clock, #battery, #cpu, #memory, #disk, #temperature, #backlight,
+#network, #pulseaudio, #wireplumber, #custom-media, #tray, #mode,
+#idle_inhibitor, #scratchpad, #power-profiles-daemon, #mpd,
+#custom-power, #keyboard-state, #language {
+    padding: 2px 10px;
+    margin: 4px 2px;
+    color: @text;
+    background-color: transparent;
 }
 
+/* thin cyan divider between right-side readouts (HUD ticks),
+   drawn as a left edge so it never stacks with the island frame */
+#pulseaudio, #network, #disk, #cpu, #memory {
+    border-left: 1px solid @hairline;
+    padding-left: 11px;
+}
+
+/* glyphs/icons inside cells pop cyan via per-module color below;
+   make the cells feel like discrete HUD readouts on hover */
+#cpu:hover, #memory:hover, #disk:hover, #network:hover,
+#pulseaudio:hover, #custom-media:hover, #idle_inhibitor:hover,
+#mpd:hover, #clock:hover {
+    background-color: rgba(45, 226, 255, 0.10);
+    box-shadow: inset 0 -2px 0 @cyan;
+}
+
+/* Clock — the centrepiece readout */
 #clock {
-    background-color: rgba(92, 200, 212, 0.10);
-    color: #5cc8d4;
-    font-weight: 700;
+    padding: 2px 20px;
+    color: @cyan;
+    background-color: transparent;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 8px rgba(45, 226, 255, 0.6);
 }
 
-#cpu {
-    color: #ff5f8a;
+/* one dominant accent: everything is cyan-family.
+   only urgent/critical states break to alert red. */
+#cpu, #memory, #disk, #network, #pulseaudio,
+#custom-media, #idle_inhibitor, #mpd {
+    color: @text;
 }
+#cpu        { color: @cyan; }
+#network    { color: @cyan; }
+#idle_inhibitor { color: @text; }
+#memory     { color: @text; }
+#pulseaudio { color: @text; }
 
-#memory {
-    color: #ff7eb3;
-}
+/* battery warnings stay loud */
+#battery.warning  { color: #ffb000; }
+#battery.critical { color: @alert; border-bottom-color: @alert; }
 
-#network {
-    color: #5cc8d4;
-}
-
-#pulseaudio {
-    color: #e8a0b4;
-}
-
-#idle_inhibitor {
-    padding: 2px 12px 2px 8px;
-}
+/* ---- Workspaces (HUD nav) ----------------------------------- */
+#workspaces { padding: 0 2px; }
 
 #workspaces button {
-    padding: 2px 6px;
-    margin: 2px 1px;
-    border-radius: 6px;
-    background-color: rgba(92, 200, 212, 0.05);
-    color: #5a7a80;
-    min-width: 20px;
+    padding: 2px 9px;
+    margin: 4px 1px;
+    min-width: 16px;
+    color: @textdim;
+    background-color: transparent;
+    border-bottom: 2px solid transparent;
 }
 
 #workspaces button:hover {
-    background: rgba(255, 126, 179, 0.12);
-    color: #e8a0b4;
+    color: @text;
+    background-color: rgba(45, 226, 255, 0.10);
+    box-shadow: inset 0 -2px 0 @cyandim;
 }
 
-#workspaces button.focused, #workspaces button.active {
-    background-color: rgba(255, 126, 179, 0.18);
-    color: #ff7eb3;
-    box-shadow: none;
+#workspaces button.active,
+#workspaces button.focused {
+    color: @cyan;
+    background-color: rgba(45, 226, 255, 0.14);
+    border-bottom: 2px solid @cyan;
+    box-shadow: 0 0 10px rgba(45, 226, 255, 0.45);
+    text-shadow: 0 0 6px rgba(45, 226, 255, 0.7);
 }
 
 #workspaces button.urgent {
-    background-color: rgba(255, 95, 138, 0.25);
-    color: #ff5f8a;
+    color: @alert;
+    background-color: rgba(255, 59, 92, 0.18);
+    border-bottom: 2px solid @alert;
 }
+
+/* media a touch dimmer so the clock/workspaces lead */
+#custom-media { color: @textdim; }
+#mpd          { color: @textdim; }
