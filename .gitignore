@@ -5,6 +5,7 @@ JetBrains/*
 # Application Caches and Temporary Files
 Signal/*
 chromium/*
+google-chrome/
 
 # User-specific Runtime Data
 dconf/user
