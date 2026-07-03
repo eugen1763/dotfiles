@@ -7,7 +7,7 @@
     {
         "name": "main",
         "layer": "top",
-        "height": 36,
+        "height": 26,
         "spacing": 4,
         "margin-top": 6,
         "margin-left": 10,
@@ -26,7 +26,8 @@
             "disk",
             "battery",
             "cpu",
-            "memory"
+            "memory",
+            "clock"
         ]
     },
     {
@@ -34,7 +35,7 @@
         "output": ["DP-6"],
         "layer": "top",
         "exclusive": false,
-        "height": 36,
+        "height": 26,
         // Shrink this overlay surface to a centred band via large side margins,
         // so it ONLY covers the clock. A full-width transparent bar would sit on
         // top of the main bar and swallow clicks meant for the left/right islands.
@@ -44,7 +45,7 @@
         "spacing": 4,
         // align with the main islands: centre margin-top must equal -height
         // (cancels the main bar's height + its own margin-top offset).
-        "margin-top": -36,
+        "margin-top": -26,
         "include": ["$HOME/.config/waybar/modules.jsonc"],
         "modules-left": [],
         "modules-center": [
