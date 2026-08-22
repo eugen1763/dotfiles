@@ -219,6 +219,8 @@ EOF
 Create `/boot/loader/entries/arch.conf` (replace `<ROOT_UUID>` with your actual UUID):
 ```bash
 ROOT_UUID=$(blkid -s UUID -o value /dev/sda2)
+
+# Use amd-ucode.img if on AMD, otherwise intel-ucode.img
 cat > /boot/loader/entries/arch.conf << EOF
 title   Arch Linux
 linux   /vmlinuz-linux
@@ -227,6 +229,14 @@ initrd  /initramfs-linux.img
 options cryptdevice=UUID=$ROOT_UUID:cryptroot root=/dev/mapper/cryptroot rootflags=subvol=@ rw quiet
 EOF
 ```
+
+> **AMD CPU?** Replace `initrd /intel-ucode.img` with `initrd /amd-ucode.img`.
+
+**Verify everything exists before rebooting:**
+```bash
+ls -la /boot/vmlinuz-linux /boot/*-ucode.img /boot/initramfs-linux.img
+```
+All three must show up. If any are missing, reinstall the kernel/microcode and rerun `mkinitcpio -P`.
 
 ---
 
