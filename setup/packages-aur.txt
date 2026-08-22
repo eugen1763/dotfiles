@@ -6,6 +6,7 @@ elephant
 elephant-calc
 elephant-desktopapplications
 elephant-menus
+elephant-runner
 elephant-symbols
 walker-git
 yay-bin

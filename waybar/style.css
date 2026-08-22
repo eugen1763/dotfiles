@@ -58,7 +58,7 @@ window#waybar.main .modules-center {
 /* ---- Module cells ------------------------------------------- */
 #clock, #battery, #cpu, #memory, #disk, #temperature, #backlight,
 #network, #pulseaudio, #wireplumber, #custom-media, #tray, #mode,
-#idle_inhibitor, #scratchpad, #power-profiles-daemon, #mpd,
+#inhibitor, #scratchpad, #power-profiles-daemon, #mpd,
 #custom-power, #keyboard-state, #language {
     padding: 2px 10px;
     margin: 4px 2px;
@@ -76,7 +76,7 @@ window#waybar.main .modules-center {
 /* glyphs/icons inside cells pop cyan via per-module color below;
    make the cells feel like discrete HUD readouts on hover */
 #cpu:hover, #memory:hover, #disk:hover, #network:hover,
-#pulseaudio:hover, #custom-media:hover, #idle_inhibitor:hover,
+#pulseaudio:hover, #custom-media:hover, #inhibitor:hover,
 #mpd:hover, #clock:hover {
     background-color: rgba(45, 226, 255, 0.10);
     box-shadow: inset 0 -2px 0 @cyan;
@@ -96,12 +96,12 @@ window#waybar.main .modules-center {
 /* one dominant accent: everything is cyan-family.
    only urgent/critical states break to alert red. */
 #cpu, #memory, #disk, #network, #pulseaudio,
-#custom-media, #idle_inhibitor, #mpd {
+#custom-media, #inhibitor, #mpd {
     color: @text;
 }
 #cpu        { color: @cyan; }
 #network    { color: @cyan; }
-#idle_inhibitor { color: @text; }
+#inhibitor { color: @text; }
 #memory     { color: @text; }
 #pulseaudio { color: @text; }
 

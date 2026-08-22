@@ -1,0 +1,39 @@
+#!/bin/sh
+# Adjust the internal display backlight through the active logind session.
+# This avoids requiring root access or a separate brightness-control package.
+set -eu
+
+case "${1-}" in
+    up) direction=1 ;;
+    down) direction=-1 ;;
+    *) exit 64 ;;
+esac
+
+for backlight in /sys/class/backlight/*; do
+    [ -r "$backlight/brightness" ] || continue
+    device=${backlight##*/}
+    break
+done
+: "${device:?No display backlight device found}"
+
+current=$(cat "/sys/class/backlight/$device/brightness")
+maximum=$(cat "/sys/class/backlight/$device/max_brightness")
+step=$(((maximum + 19) / 20)) # 5%, rounded up
+
+target=$((current + direction * step))
+[ "$target" -lt 0 ] && target=0
+[ "$target" -gt "$maximum" ] && target=$maximum
+
+: "${XDG_SESSION_ID:?No logind session ID available}"
+session_path=$(busctl --system call \
+    org.freedesktop.login1 \
+    /org/freedesktop/login1 \
+    org.freedesktop.login1.Manager \
+    GetSession s "$XDG_SESSION_ID" | awk -F '"' 'NR == 1 { print $2 }')
+: "${session_path:?Could not resolve the active logind session}"
+
+exec busctl --system call \
+    org.freedesktop.login1 \
+    "$session_path" \
+    org.freedesktop.login1.Session \
+    SetBrightness ssu backlight "$device" "$target"

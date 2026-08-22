@@ -50,3 +50,15 @@ mimeapps.list
 pavucontrol.ini
 nvim/lazy-lock.json
 nvim/lazy-lock.json
+
+# Secrets and credential stores
+cli-proxy-api/
+pum/auth.json
+
+# Machine-local application state
+pum/
+QtProject.conf
+nextjs-nodejs/
+
+# Editor and script backups
+*.bak-*

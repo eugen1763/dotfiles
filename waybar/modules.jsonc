@@ -53,7 +53,8 @@
         "tooltip-format": "MPD (connected)",
         "tooltip-format-disconnected": "MPD (disconnected)"
     },
-    "idle_inhibitor": {
+    "inhibitor": {
+        "what": ["idle", "handle-lid-switch"],
         "format": "{icon}",
         "format-icons": {
             "activated": "󰅶",

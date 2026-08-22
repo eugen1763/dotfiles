@@ -60,7 +60,15 @@ while IFS= read -r service; do
     [[ "$service" =~ ^#.*$ ]] && continue
     [[ -z "$service" ]] && continue
     echo "    -> $service"
-    systemctl --user enable "$service"
+    # elephant ships no systemd unit; it is generated + enabled via its own
+    # subcommand. A plain `systemctl --user enable elephant` fails here.
+    if [[ "$service" == "elephant" ]]; then
+        elephant service enable
+        systemctl --user daemon-reload
+        systemctl --user enable --now elephant.service
+    else
+        systemctl --user enable "$service"
+    fi
 done < "$SCRIPT_DIR/services-user.txt"
 
 echo ""

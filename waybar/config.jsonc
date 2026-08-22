@@ -20,7 +20,7 @@
         "modules-center": [],
         "modules-right": [
             "mpd",
-            "idle_inhibitor",
+            "inhibitor",
             "pulseaudio",
             "network",
             "disk",

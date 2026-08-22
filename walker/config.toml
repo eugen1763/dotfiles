@@ -6,7 +6,7 @@ global_argument_delimiter = "#" # query: firefox#https://benz.dev => part after 
 exact_search_prefix = "'"       # disable fuzzy searching
 theme = "cloud"                 # theme to use
 disable_mouse = false           # disable mouse (on input and list only)
-debug = true                   # enables debug printing for some stuff, f.e. keybinds
+debug = false                  # enables debug printing for some stuff, f.e. keybinds
 page_jump_items = 10            # number of items to skip with Page Up/Down
 hide_quick_activation = false   # globally hide the quick activation buttons
 

@@ -12,3 +12,7 @@ fish_add_path -g /home/finn/.local/bin
 if not set -q WAYLAND_DISPLAY; and test (tty) = /dev/tty1
     exec start-hyprland
 end
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
