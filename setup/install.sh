@@ -47,6 +47,14 @@ else
     echo "    No AUR packages to install."
 fi
 
+echo "==> Installing bundled fonts..."
+# Waybar's Ice HUD theme names the "feather" family directly. It is not
+# packaged for Arch, so it ships in this repo.
+font_dir="$HOME/.local/share/fonts"
+mkdir -p "$font_dir"
+cp -n "$SCRIPT_DIR"/fonts/*.ttf "$font_dir/" 2>/dev/null || true
+fc-cache -f "$font_dir" > /dev/null
+
 echo "==> Enabling system services..."
 while IFS= read -r service; do
     [[ "$service" =~ ^#.*$ ]] && continue
