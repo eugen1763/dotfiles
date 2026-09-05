@@ -303,10 +303,14 @@ hl.bind("SUPER + SHIFT + W", hl.dsp.exec_cmd('"$HOME/.config/waybar/toggle-wayba
 -- clipboard history
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy"))
 
+-- WireGuard VPN: SHIFT opens the rofi picker, CTRL toggles the first tunnel
+hl.bind(mainMod .. " + SHIFT + V", hl.dsp.exec_cmd('"$HOME/.config/waybar/vpn-menu.sh"'))
+hl.bind(mainMod .. " + CTRL + SHIFT + V", hl.dsp.exec_cmd('"$HOME/.config/waybar/vpn-toggle.sh"'))
+
 -- Lock the session. hypridle catches the logind signal and runs hyprlock.
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("loginctl lock-session"))
 -- Wake screen (failsafe)
-hl.bind(mainMod .. " + CTRL + L", hl.dsp.dpms({ action = "enable" }))
+hl.bind(mainMod .. " + CTRL + L", hl.dsp.dpms({ action = "enable" }), { locked = true })
 
 -- Lid close always locks. Whether it also suspends is up to logind, which the
 -- waybar inhibitor toggle blocks when it is ON.

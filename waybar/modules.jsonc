@@ -115,6 +115,21 @@
         "tooltip-format": "{ifname} via {gwaddr}\n{essid} ({signalStrength}%)\n{ipaddr}/{cidr}",
         "interval": 2
     },
+    "custom/vpn": {
+        "format": "{icon}  {text}",
+        "return-type": "json",
+        "format-icons": {
+            "up": "<span font='feather 8.5'></span>",
+            "down": "<span font='feather 8.5'></span>"
+        },
+        "exec": "$HOME/.config/waybar/vpn.sh",
+        "interval": 5,
+        // vpn-toggle.sh / vpn-menu.sh raise SIGRTMIN+8 for an instant refresh
+        "signal": 8,
+        "on-click": "$HOME/.config/waybar/vpn-toggle.sh",
+        "on-click-right": "$HOME/.config/waybar/vpn-menu.sh",
+        "tooltip": true
+    },
     "pulseaudio": {
         "format": "{icon}  {volume}%  {format_source}",
         "format-bluetooth": "{icon}  {volume}%  {format_source}",
