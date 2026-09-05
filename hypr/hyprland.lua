@@ -30,6 +30,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("mako")
     hl.exec_cmd("waybar")
     hl.exec_cmd("hyprpaper")
+    hl.exec_cmd("hypridle")
 
     -- Walker launcher backend. Elephant must run before walker's service mode.
     hl.exec_cmd("systemctl --user start elephant.service")
@@ -302,10 +303,14 @@ hl.bind("SUPER + SHIFT + W", hl.dsp.exec_cmd('"$HOME/.config/waybar/toggle-wayba
 -- clipboard history
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy"))
 
--- Instant screen off
-hl.bind(mainMod .. " + L", hl.dsp.dpms({ action = "disable" }))
+-- Lock the session. hypridle catches the logind signal and runs hyprlock.
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("loginctl lock-session"))
 -- Wake screen (failsafe)
 hl.bind(mainMod .. " + CTRL + L", hl.dsp.dpms({ action = "enable" }))
+
+-- Lid close always locks. Whether it also suspends is up to logind, which the
+-- waybar inhibitor toggle blocks when it is ON.
+hl.bind("switch:on:Lid Switch", hl.dsp.exec_cmd("loginctl lock-session"), { locked = true })
 
 
 --------------------------------

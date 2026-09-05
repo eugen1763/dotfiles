@@ -1,6 +1,8 @@
 if status is-interactive
     # Aliases (fish has color by default, but these ensure consistency)
-    alias ls 'ls --color=auto'
+    alias ls 'eza --icons=auto --group-directories-first --color=auto'
+    alias ll 'eza -l --icons=auto --group-directories-first --color=auto'
+    alias la 'eza -la --icons=auto --group-directories-first --color=auto'
     alias grep 'grep --color=auto'
 end
 

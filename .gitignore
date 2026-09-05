@@ -63,3 +63,7 @@ nextjs-nodejs/
 
 # Editor and script backups
 *.bak-*
+
+# Editor caches and state
+Cursor/
+cursor/
