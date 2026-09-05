@@ -1,5 +1,13 @@
 // -*- mode: jsonc -*-
 // Shared module definitions, included by every bar/island in config.jsonc
+//
+// ICONS: Feather (adi1090x/polybar-themes), family "feather", U+E900-U+EA19.
+// The font is installed at ~/.local/share/fonts/feather.ttf and is listed
+// FIRST in style.css. It carries no Latin glyphs, so text falls through to
+// JetBrains Mono automatically.
+//
+// CONVENTION: every module leads with its icon, then two spaces, then the
+// value. This keeps a straight column of icons down the right island.
 {
     "hyprland/workspaces": {
         "format": "{name}",
@@ -11,101 +19,78 @@
     "keyboard-state": {
         "numlock": true,
         "capslock": true,
-        "format": "{name} {icon}",
+        "format": "{icon}  {name}",
         "format-icons": {
-            "locked": "",
-            "unlocked": ""
+            "locked": "<span font='feather 8.5'></span>",
+            "unlocked": "<span font='feather 8.5'></span>"
         }
     },
-    "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-    "sway/scratchpad": {
-        "format": "{icon} {count}",
-        "show-empty": false,
-        "format-icons": ["", ""],
-        "tooltip": true,
-        "tooltip-format": "{app}: {title}"
-    },
     "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+        "format": "{stateIcon}  {artist} - {title}  ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
+        "format-stopped": "<span font='feather 8.5'></span>  Stopped",
+        "format-disconnected": "<span font='feather 8.5'></span>  Disconnected",
         "unknown-tag": "N/A",
         "interval": 5,
-        "consume-icons": {
-            "on": " "
-        },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
         "state-icons": {
-            "paused": "󰏤",
-            "playing": "󰐊"
+            "playing": "<span font='feather 8.5'></span>",
+            "paused": "<span font='feather 8.5'></span>"
         },
-        "tooltip-format": "MPD (connected)",
+        "tooltip-format": "MPD (connected)\n{artist} - {album} - {title}\n{songPosition}/{queueLength} - {volume}%",
         "tooltip-format-disconnected": "MPD (disconnected)"
     },
     "inhibitor": {
         "what": ["idle", "handle-lid-switch"],
         "format": "{icon}",
         "format-icons": {
-            "activated": "󰅶",
-            "deactivated": "󰾪"
-        }
+            "activated": "<span font='feather 8.5'></span>",
+            "deactivated": "<span font='feather 8.5'></span>"
+        },
+        "tooltip": true
     },
     "tray": {
         "spacing": 10
     },
     "clock": {
-        "format": "󰃭  {:%a %d.%m.%Y      󰅐 %H:%M}",
-        "format-alt": "󰅐  {:%H:%M:%S}",
+        "format": "<span font='feather 8.5'></span>  {:%a %d.%m.%Y    <span font='feather 8.5'></span>  %H:%M}",
+        "format-alt": "<span font='feather 8.5'></span>  {:%H:%M:%S}",
         "interval": 1,
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     },
     "disk": {
-        "format": "{free}/{total} 󰋊",
+        "format": "<span font='feather 8.5'></span>  {free}/{total}",
         "interval": 30,
-        "path": "/"
+        "path": "/",
+        "tooltip-format": "{used} used of {total} on {path} ({percentage_used}%)"
     },
     "cpu": {
-        "format": "{usage}% {avg_frequency}GHz 󰻠",
+        "format": "<span font='feather 8.5'></span>  {usage}%  {avg_frequency}GHz",
         "tooltip": true,
-        "interval": 2,
-        "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+        "interval": 2
     },
     "memory": {
-        "format": "{used:0.1f}G/{total:0.1f}G 󰍛",
+        "format": "<span font='feather 8.5'></span>  {used:0.1f}G/{total:0.1f}G",
         "tooltip": true,
         "interval": 2
     },
     "temperature": {
         "critical-threshold": 80,
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
+        "format": "<span font='feather 8.5'></span>  {temperatureC}°C"
     },
     "backlight": {
-        "format": "{percent}% {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
+        "format": "{icon}  {percent}%",
+        "format-icons": ["<span font='feather 8.5'></span>", "<span font='feather 8.5'></span>"]
     },
     "battery": {
         "states": {
             "warning": 30,
             "critical": 15
         },
-        "format": "{capacity}% {icon}",
-        "format-full": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
-        "format-icons": ["", "", "", "", ""]
+        "format": "{icon}  {capacity}%",
+        "format-full": "{icon}  {capacity}%",
+        "format-charging": "<span font='feather 8.5'></span>  {capacity}%",
+        "format-plugged": "<span font='feather 8.5'></span>  {capacity}%",
+        "format-alt": "{icon}  {time}",
+        "format-icons": ["<span font='feather 8.5'></span>", "<span font='feather 8.5'></span>", "<span font='feather 8.5'></span>", "<span font='feather 8.5'></span>", "<span font='feather 8.5'></span>"]
     },
     "battery#bat2": {
         "bat": "BAT2"
@@ -115,54 +100,55 @@
         "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
         "tooltip": true,
         "format-icons": {
-            "default": "",
-            "performance": "",
-            "balanced": "",
-            "power-saver": ""
+            "default": "<span font='feather 8.5'></span>",
+            "performance": "<span font='feather 8.5'></span>",
+            "balanced": "<span font='feather 8.5'></span>",
+            "power-saver": "<span font='feather 8.5'></span>"
         }
     },
     "network": {
-        "format-wifi": "↑ {bandwidthUpBytes} ↓ {bandwidthDownBytes} 󰤨",
-        "format-ethernet": "↑ {bandwidthUpBytes} ↓ {bandwidthDownBytes} 󰈀",
+        "format-wifi": "<span font='feather 8.5'></span>  <span font='feather 8.5'></span> {bandwidthUpBytes}  <span font='feather 8.5'></span> {bandwidthDownBytes}",
+        "format-ethernet": "<span font='feather 8.5'></span>  <span font='feather 8.5'></span> {bandwidthUpBytes}  <span font='feather 8.5'></span> {bandwidthDownBytes}",
+        "format-linked": "<span font='feather 8.5'></span>  {ifname} (No IP)",
+        "format-disconnected": "<span font='feather 8.5'></span>  Disconnected",
+        "format-alt": "<span font='feather 8.5'></span>  {essid} ({signalStrength}%)",
         "tooltip-format": "{ifname} via {gwaddr}\n{essid} ({signalStrength}%)\n{ipaddr}/{cidr}",
-        "format-linked": "{ifname} (No IP) 󰤭",
-        "format-disconnected": "Disconnected 󰤮",
-        "format-alt": "{essid} ({signalStrength}%) 󰤨",
         "interval": 2
     },
     "pulseaudio": {
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": "󰝟 {icon} {format_source}",
-        "format-muted": "󰝟 {format_source}",
-        "format-source": "{volume}% 󰍬",
-        "format-source-muted": "󰍭",
+        "format": "{icon}  {volume}%  {format_source}",
+        "format-bluetooth": "{icon}  {volume}%  {format_source}",
+        "format-bluetooth-muted": "<span font='feather 8.5'></span>  {format_source}",
+        "format-muted": "<span font='feather 8.5'></span>  {format_source}",
+        "format-source": "<span font='feather 8.5'></span>  {volume}%",
+        "format-source-muted": "<span font='feather 8.5'></span>",
         "format-icons": {
-            "headphone": "󰋋",
-            "hands-free": "󰋎",
-            "headset": "󰋎",
-            "phone": "󰏲",
-            "portable": "󰦧",
-            "car": "󰄋",
-            "default": ["󰕿", "󰖀", "󰕾"]
+            "headphone": "<span font='feather 8.5'></span>",
+            "hands-free": "<span font='feather 8.5'></span>",
+            "headset": "<span font='feather 8.5'></span>",
+            "phone": "<span font='feather 8.5'></span>",
+            "portable": "<span font='feather 8.5'></span>",
+            "car": "<span font='feather 8.5'></span>",
+            "default": ["<span font='feather 8.5'></span>", "<span font='feather 8.5'></span>", "<span font='feather 8.5'></span>"]
         },
-        "on-click": "pavucontrol"
+        "on-click": "pavucontrol",
+        "tooltip-format": "{desc}  {volume}%"
     },
     "custom/media": {
-        "format": "{icon} {text}",
+        "format": "{icon}  {text}",
         "return-type": "json",
         "max-length": 40,
         "format-icons": {
-            "Playing": "󰐊",
-            "Paused": "󰏤",
-            "Stopped": "󰓛"
+            "Playing": "<span font='feather 8.5'></span>",
+            "Paused": "<span font='feather 8.5'></span>",
+            "Stopped": "<span font='feather 8.5'></span>"
         },
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.sh 2> /dev/null",
         "on-click": "playerctl play-pause"
     },
     "custom/power": {
-        "format": "⏻ ",
+        "format": "<span font='feather 8.5'></span>",
         "tooltip": false,
         "menu": "on-click",
         "menu-file": "$HOME/.config/waybar/power_menu.xml",
