@@ -64,7 +64,6 @@ signal-desktop
 slurp
 sshfs
 sudo
-swayidle
 tree-sitter-cli
 ttf-dejavu
 ttf-jetbrains-mono-nerd
