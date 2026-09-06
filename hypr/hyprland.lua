@@ -32,6 +32,10 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("hyprpaper")
     hl.exec_cmd("hypridle")
 
+    -- hyprlock goes permanently keyboard-dead if its VT was inactive. See the
+    -- script header.
+    hl.exec_cmd("~/.config/hypr/scripts/hyprlock-vt-guard.sh")
+
     -- Walker launcher backend. Elephant must run before walker's service mode.
     hl.exec_cmd("systemctl --user start elephant.service")
     hl.exec_cmd("sh -c 'for i in $(seq 50); do [ -S \"$XDG_RUNTIME_DIR/elephant/elephant.sock\" ] && break; sleep 0.1; done; exec walker --gapplication-service'")
@@ -193,6 +197,10 @@ hl.config({
     misc = {
         force_default_wallpaper = -1,    -- Set to 0 or 1 to disable the anime mascot wallpapers
         disable_hyprland_logo   = false, -- If true disables the random hyprland logo / anime girl background. :(
+
+        -- Without this Hyprland refuses any replacement lock client, so a
+        -- hyprlock that lost its keyboard leaves the session unrecoverable.
+        allow_session_lock_restore = true,
     },
 })
 
