@@ -370,3 +370,7 @@ hl.window_rule({
 
     float = true,
 })
+
+-- Cloud desktop themes (dofile reads the current selection on every reload).
+dofile(os.getenv("HOME") .. "/.config/hypr/themes/current/hyprland.lua")
+hl.bind("SUPER + SHIFT + T", hl.dsp.exec_cmd("~/.config/hypr/scripts/desktop-theme"))

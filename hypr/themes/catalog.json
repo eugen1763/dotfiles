@@ -1,0 +1,50 @@
+[
+  {
+    "id": "original",
+    "name": "Original \u00b7 Ice HUD"
+  },
+  {
+    "id": "rose-dawn",
+    "name": "Rose Dawn"
+  },
+  {
+    "id": "lavender-dusk",
+    "name": "Lavender Dusk"
+  },
+  {
+    "id": "blue-hour",
+    "name": "Blue Hour"
+  },
+  {
+    "id": "amber-tide",
+    "name": "Amber Tide"
+  },
+  {
+    "id": "mint-horizon",
+    "name": "Mint Horizon"
+  },
+  {
+    "id": "aurora-drift",
+    "name": "Aurora Drift"
+  },
+  {
+    "id": "lunar-garden",
+    "name": "Lunar Garden"
+  },
+  {
+    "id": "desert-mirage",
+    "name": "Desert Mirage"
+  },
+  {
+    "id": "biolume-bay",
+    "name": "Biolume Bay"
+  },
+  {
+    "id": "velvet-eclipse",
+    "name": "Velvet Eclipse"
+  },
+  {
+    "id": "sakura-mist",
+    "name": "Sakura Mist"
+  }
+]

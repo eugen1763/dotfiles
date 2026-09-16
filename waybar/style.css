@@ -1,20 +1,10 @@
+@import "../hypr/themes/current/colors.css";
 /* ============================================================
    ICE HUD  —  sci-fi heads-up display theme for Waybar
    deep blue-black · dominant electric cyan · thin bright lines
    square edges · monospace · Feather line icons
    ============================================================ */
 
-@define-color bg        #06101a;
-@define-color surface   #0a1826;
-@define-color elevated  #0e2233;
-@define-color hairline  #143047;
-@define-color line      #1c4a63;
-@define-color cyan      #2de2ff;
-@define-color cyandim   #13889c;
-@define-color text      #bfe9f5;
-@define-color textdim   #5b7a8a;
-@define-color alert     #ff3b5c;
-@define-color warn      #ffb000;
 
 /* "feather" (adi1090x/polybar-themes) carries only U+E900-U+EA19 and no
    Latin glyphs, so listing it first resolves every icon while all text
@@ -44,7 +34,7 @@ window#waybar.main   .modules-right,
 window#waybar.center .modules-center {
     background-color: @surface;
     border: 1px solid @cyandim;
-    box-shadow: 0 0 10px rgba(45, 226, 255, 0.14);
+    box-shadow: 0 0 10px alpha(@cyan, 0.14);
     padding: 0 4px;
     margin: 0 2px;
 }
@@ -83,7 +73,7 @@ window#waybar.main .modules-center {
 #cpu:hover, #memory:hover, #disk:hover, #network:hover,
 #pulseaudio:hover, #custom-media:hover, #inhibitor:hover, #custom-vpn:hover,
 #mpd:hover, #battery:hover, #clock:hover {
-    background-color: rgba(45, 226, 255, 0.10);
+    background-color: alpha(@cyan, 0.10);
     box-shadow: inset 0 -2px 0 @cyan;
 }
 
@@ -107,7 +97,7 @@ window#waybar.main .modules-center {
     font-weight: 800;
     font-size: 12px;
     letter-spacing: 1px;
-    text-shadow: 0 0 8px rgba(45, 226, 255, 0.6);
+    text-shadow: 0 0 8px alpha(@cyan, 0.6);
 }
 
 /* the centre island holds the clock alone: no tick, it would sit
@@ -132,17 +122,17 @@ window#waybar.center #clock { border-left: none; }
 
 #workspaces button:hover {
     color: @text;
-    background-color: rgba(45, 226, 255, 0.10);
+    background-color: alpha(@cyan, 0.10);
     box-shadow: inset 0 -2px 0 @cyandim;
 }
 
 #workspaces button.active,
 #workspaces button.focused {
     color: @cyan;
-    background-color: rgba(45, 226, 255, 0.14);
+    background-color: alpha(@cyan, 0.14);
     border-bottom: 2px solid @cyan;
-    box-shadow: 0 0 10px rgba(45, 226, 255, 0.45);
-    text-shadow: 0 0 6px rgba(45, 226, 255, 0.7);
+    box-shadow: 0 0 10px alpha(@cyan, 0.45);
+    text-shadow: 0 0 6px alpha(@cyan, 0.7);
 }
 
 #workspaces button.urgent {
@@ -150,3 +140,7 @@ window#waybar.center #clock { border-left: none; }
     background-color: rgba(255, 59, 92, 0.18);
     border-bottom: 2px solid @alert;
 }
+
+/* Desktop theme picker */
+#custom-theme { padding: 1px 9px; margin: 2px 1px; color: @cyan; border-left: 1px solid @hairline; }
+#custom-theme:hover { background-color: alpha(@cyan, 0.10); box-shadow: inset 0 -2px 0 @cyan; }

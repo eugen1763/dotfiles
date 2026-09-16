@@ -1,0 +1,21 @@
+{
+  "method": "Built-in GPT Image tool",
+  "reference": "../wallpaper.jpeg",
+  "images": [
+    {
+      "id": "rose-dawn",
+      "prompt": "Use case: photorealistic-natural. Asset type: high resolution desktop wallpaper, landscape 16:9, ideally 2560x1440 or larger. Use the supplied image only as a STYLE AND COMPOSITION REFERENCE; create a new distinct photograph, not a copy. Primary request: dreamy minimalist cloudscape. Muted teal sky with warm coral and peach cumulus clouds along the lower quarter, delicate dusty rose shadows. Match the reference's subtle analog film grain, soft photographic cloud texture, gentle pastel grading and large quiet open sky covering the upper two thirds. A sparse flock of tiny dark bird silhouettes floats just above the clouds, confined to the lower third. Edge-to-edge image, no landscape, buildings, text, logos, watermark, frame or UI. The scene must remain beautiful when cropped to narrower monitor proportions.",
+      "asset": "rose-dawn/wallpaper.png"
+    },
+    {
+      "id": "lavender-dusk",
+      "prompt": "Use case: photorealistic-natural. Asset type: high resolution desktop wallpaper, landscape 16:9, ideally 2560x1440 or larger. Use the supplied image only as a STYLE AND COMPOSITION REFERENCE; create a new distinct photograph, not a copy. Primary request: dreamy minimalist cloudscape. Dusky desaturated lavender sky with peach-pink glowing cumulus along the lower quarter, deep mauve cloud shadows. Match the reference's subtle analog film grain, soft photographic cloud texture, gentle pastel grading and large quiet open sky covering the upper two thirds. A sparse flock of tiny dark bird silhouettes floats just above the clouds, confined to the lower third. Edge-to-edge image, no landscape, buildings, text, logos, watermark, frame or UI. The scene must remain beautiful when cropped to narrower monitor proportions.",
+      "asset": "lavender-dusk/wallpaper.png"
+    },
+    {
+      "id": "blue-hour",
+      "prompt": "Use case: photorealistic-natural. Asset type: high resolution desktop wallpaper, landscape 16:9, ideally 2560x1440 or larger. Use the supplied image only as a STYLE AND COMPOSITION REFERENCE; create a new distinct photograph, not a copy. Primary request: dreamy minimalist cloudscape. Deep muted midnight teal-blue sky with softly moonlit pale blue cumulus along the lower quarter, restrained blush highlights and navy shadows; dark and tranquil but clouds remain visible. Match the reference's subtle analog film grain, soft photographic cloud texture, gentle pastel grading and large quiet open sky covering the upper two thirds. A sparse flock of tiny dark bird silhouettes floats just above the clouds, confined to the lower third. Edge-to-edge image, no landscape, buildings, text, logos, watermark, frame or UI. The scene must remain beautiful when cropped to narrower monitor proportions.",
+      "asset": "blue-hour/wallpaper.png"
+    }
+  ]
+}

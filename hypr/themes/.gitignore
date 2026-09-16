@@ -1,0 +1,5 @@
+backup-*/
+.switch.lock
+.current-*
+.catalog-next.json
+__pycache__/

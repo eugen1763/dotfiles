@@ -9,6 +9,12 @@
 // CONVENTION: every module leads with its icon, then two spaces, then the
 // value. This keeps a straight column of icons down the right island.
 {
+    "custom/theme": {
+        "format": "◈",
+        "tooltip-format": "Desktop themes · Super + Shift + T",
+        "on-click": "$HOME/.config/hypr/scripts/desktop-theme",
+        "on-click-right": "$HOME/.config/hypr/scripts/desktop-theme next"
+    },
     "hyprland/workspaces": {
         "format": "{name}",
         "on-click": "activate",

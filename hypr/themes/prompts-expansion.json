@@ -1,0 +1,71 @@
+{
+  "method": "Built-in GPT Image tool",
+  "images": [
+    {
+      "id": "amber-tide",
+      "name": "Amber Tide",
+      "scene": "Photographic amber sunset above a low sea of soft apricot cumulus clouds; small distant birds; smoky warm ochre sky with a quiet soft golden light. Subtle analogue film grain, dreamy natural photographic texture. Clouds concentrated in the lower third.",
+      "palette": "1b1511 2b211a 3b2d21 57402c 896440 e8b66e b48750 f6e9d4 bba88b ff7386 efca82",
+      "reference": true,
+      "prompt": "Use case: photorealistic-natural. Asset type: landscape 16:9 desktop wallpaper. Create a beautiful original background image. Photographic amber sunset above a low sea of soft apricot cumulus clouds; small distant birds; smoky warm ochre sky with a quiet soft golden light. Subtle analogue film grain, dreamy natural photographic texture. Clouds concentrated in the lower third. Use the supplied original wallpaper as a loose style reference for softness, clouds, birds and grain, but create a distinct new composition. Keep it comfortable behind desktop windows, with restrained contrast and generous quiet negative space. Edge-to-edge image, no UI, text, logos, watermark, borders or collage.",
+      "asset": "amber-tide/wallpaper.png"
+    },
+    {
+      "id": "mint-horizon",
+      "name": "Mint Horizon",
+      "scene": "A serene mint-green and pale sea-glass sky above a low bank of pearl and blush-pink clouds at sunrise; tiny birds along the cloud tops. Pastel photographic realism, delicate analogue film grain, enormous soft open sky.",
+      "palette": "101b19 1a2b27 253b34 385247 547b6b a5dcc4 71aa94 e0f1e9 9fbdb0 f18b9c edce93",
+      "reference": true,
+      "prompt": "Use case: photorealistic-natural. Asset type: landscape 16:9 desktop wallpaper. Create a beautiful original background image. A serene mint-green and pale sea-glass sky above a low bank of pearl and blush-pink clouds at sunrise; tiny birds along the cloud tops. Pastel photographic realism, delicate analogue film grain, enormous soft open sky. Use the supplied original wallpaper as a loose style reference for softness, clouds, birds and grain, but create a distinct new composition. Keep it comfortable behind desktop windows, with restrained contrast and generous quiet negative space. Edge-to-edge image, no UI, text, logos, watermark, borders or collage.",
+      "asset": "mint-horizon/wallpaper.png"
+    },
+    {
+      "id": "aurora-drift",
+      "name": "Aurora Drift",
+      "scene": "Cinematic fine-art photograph of an arctic night: one graceful translucent jade and violet aurora ribbon crossing a deep dark sky above tiny distant snow-covered mountains, low on the horizon. Reflection in still dark water at the bottom. Sparse natural stars, subtle film grain, understated ethereal light. Calm and spacious, not over-saturated.",
+      "palette": "0c171b 14272b 1e363b 2e5154 437f77 8be0be 5da68f dcfaef 92b7ae f985a4 eaca91",
+      "prompt": "Use case: stylized-concept. Asset type: landscape 16:9 desktop wallpaper. Create a beautiful original background image. Cinematic fine-art photograph of an arctic night: one graceful translucent jade and violet aurora ribbon crossing a deep dark sky above tiny distant snow-covered mountains, low on the horizon. Reflection in still dark water at the bottom. Sparse natural stars, subtle film grain, understated ethereal light. Calm and spacious, not over-saturated.  Keep it comfortable behind desktop windows, with restrained contrast and generous quiet negative space. Edge-to-edge image, no UI, text, logos, watermark, borders or collage.",
+      "asset": "aurora-drift/wallpaper.png"
+    },
+    {
+      "id": "lunar-garden",
+      "name": "Lunar Garden",
+      "scene": "Surreal dreamlike fine-art landscape: a solitary small white flowering tree rooted on a pale chalk island floating low in a vast dusty-lilac sky, above a distant soft sea of clouds. A delicate thin moon high in the haze. Beautiful believable light and natural tactile blossom detail, subtle grain, poetic quiet, elegant editorial photography blended with restrained surrealism. Floating island in lower right third, upper and left areas spacious.",
+      "palette": "191523 272033 352c46 51415f 806493 d8b6e8 a283b5 f4e6fa baa5c7 fa88ad ebc99a",
+      "prompt": "Use case: stylized-concept. Asset type: landscape 16:9 desktop wallpaper. Create a beautiful original background image. Surreal dreamlike fine-art landscape: a solitary small white flowering tree rooted on a pale chalk island floating low in a vast dusty-lilac sky, above a distant soft sea of clouds. A delicate thin moon high in the haze. Beautiful believable light and natural tactile blossom detail, subtle grain, poetic quiet, elegant editorial photography blended with restrained surrealism. Floating island in lower right third, upper and left areas spacious.  Keep it comfortable behind desktop windows, with restrained contrast and generous quiet negative space. Edge-to-edge image, no UI, text, logos, watermark, borders or collage.",
+      "asset": "lunar-garden/wallpaper.png"
+    },
+    {
+      "id": "desert-mirage",
+      "name": "Desert Mirage",
+      "scene": "Minimalist fine-art landscape photograph of sweeping smooth terracotta dunes in the lower third of frame, precise elegant curved ridgelines and deep plum shadows, against a huge softly graded dusty-rose twilight sky with a small pale setting sun. Subtle tactile sand texture and film grain, sophisticated muted rust, apricot and wine palette; no people or buildings.",
+      "palette": "211317 321e24 442932 633940 935961 eca28c b57569 f8e2d6 c09b95 ff7698 f3c47e",
+      "prompt": "Use case: stylized-concept. Asset type: landscape 16:9 desktop wallpaper. Create a beautiful original background image. Minimalist fine-art landscape photograph of sweeping smooth terracotta dunes in the lower third of frame, precise elegant curved ridgelines and deep plum shadows, against a huge softly graded dusty-rose twilight sky with a small pale setting sun. Subtle tactile sand texture and film grain, sophisticated muted rust, apricot and wine palette; no people or buildings.  Keep it comfortable behind desktop windows, with restrained contrast and generous quiet negative space. Edge-to-edge image, no UI, text, logos, watermark, borders or collage.",
+      "asset": "desert-mirage/wallpaper.png"
+    },
+    {
+      "id": "biolume-bay",
+      "name": "Biolume Bay",
+      "scene": "Dreamy long-exposure night photograph of a gently curving shoreline at the bottom, softly glowing bioluminescent turquoise surf tracing dark sand; quiet midnight ocean meets a hazy navy sky. A few faint stars, tiny islands only on the far horizon. Organic luminous wave lace, restrained glow, fine film grain, lots of dark negative space in upper two thirds. No people, buildings, neon signs or boats.",
+      "palette": "07191d 102a30 183b43 245660 347c84 7cddd9 51a4ab daf6f3 91b9ba f58ba6 e6ca8b",
+      "prompt": "Use case: stylized-concept. Asset type: landscape 16:9 desktop wallpaper. Create a beautiful original background image. Dreamy long-exposure night photograph of a gently curving shoreline at the bottom, softly glowing bioluminescent turquoise surf tracing dark sand; quiet midnight ocean meets a hazy navy sky. A few faint stars, tiny islands only on the far horizon. Organic luminous wave lace, restrained glow, fine film grain, lots of dark negative space in upper two thirds. No people, buildings, neon signs or boats.  Keep it comfortable behind desktop windows, with restrained contrast and generous quiet negative space. Edge-to-edge image, no UI, text, logos, watermark, borders or collage.",
+      "asset": "biolume-bay/wallpaper.png"
+    },
+    {
+      "id": "velvet-eclipse",
+      "name": "Velvet Eclipse",
+      "scene": "Minimalist cosmic fine-art wallpaper: a small black solar disk with a delicate warm copper corona eclipsing a sun above a low silky sea of dark plum clouds. Vast nearly black aubergine sky; very subtle smoky atmospheric gradients, fine film grain, sublime restrained cinematography. Eclipse positioned above and right of center and smaller than one sixth frame width; avoid huge dramatic lens flares or busy galaxies. Low cloud edge catches a soft rose-gold rim.",
+      "palette": "180f1c 281b2e 39263e 56364f 855270 e6a3c0 ac7695 f6e0ee b69caf fc83a7 edc38b",
+      "prompt": "Use case: stylized-concept. Asset type: landscape 16:9 desktop wallpaper. Create a beautiful original background image. Minimalist cosmic fine-art wallpaper: a small black solar disk with a delicate warm copper corona eclipsing a sun above a low silky sea of dark plum clouds. Vast nearly black aubergine sky; very subtle smoky atmospheric gradients, fine film grain, sublime restrained cinematography. Eclipse positioned above and right of center and smaller than one sixth frame width; avoid huge dramatic lens flares or busy galaxies. Low cloud edge catches a soft rose-gold rim.  Keep it comfortable behind desktop windows, with restrained contrast and generous quiet negative space. Edge-to-edge image, no UI, text, logos, watermark, borders or collage.",
+      "asset": "velvet-eclipse/wallpaper.png"
+    },
+    {
+      "id": "sakura-mist",
+      "name": "Sakura Mist",
+      "scene": "Dreamlike fine-art photographic landscape at early morning: a delicate dark cherry blossom branch with blush-pink petals reaching in from the lower left, a calm mist-covered lake and barely visible far mountains low in the frame. Vast soft pearl sky with subtle dusty rose and cool grey-blue haze. Elegant Japanese-inspired composition, shallow soft atmosphere but crisp botanical detail, analogue film grain. No structures, people or text. Quiet and spacious.",
+      "palette": "1e1a1e 2d272c 3c343a 574851 80616f e4b3c1 ae8396 f6e8ed bba8b3 f188a7 e7c993",
+      "prompt": "Use case: stylized-concept. Asset type: landscape 16:9 desktop wallpaper. Create a beautiful original background image. Dreamlike fine-art photographic landscape at early morning: a delicate dark cherry blossom branch with blush-pink petals reaching in from the lower left, a calm mist-covered lake and barely visible far mountains low in the frame. Vast soft pearl sky with subtle dusty rose and cool grey-blue haze. Elegant Japanese-inspired composition, shallow soft atmosphere but crisp botanical detail, analogue film grain. No structures, people or text. Quiet and spacious.  Keep it comfortable behind desktop windows, with restrained contrast and generous quiet negative space. Edge-to-edge image, no UI, text, logos, watermark, borders or collage.",
+      "asset": "sakura-mist/wallpaper.png"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+* {
+    font: "JetBrains Mono 11";
+    background-color: transparent;
+    text-color: #f6e8ed;
+}
+window { width: 900px; location: center; anchor: center; border: 2px; border-color: #e4b3c1; border-radius: 12px; padding: 20px; background-color: #2d272c; }
+mainbox { children: [ inputbar, message, listview ]; spacing: 14px; }
+inputbar { children: [ prompt, entry ]; spacing: 14px; padding: 6px; }
+prompt { text-color: #e4b3c1; }
+entry { placeholder: "Find a theme…"; }
+message { padding: 0px 6px; }
+textbox { text-color: #bba8b3; }
+listview { columns: 3; lines: 2; fixed-height: true; scrollbar: true; spacing: 12px; }
+element { orientation: vertical; spacing: 8px; padding: 12px; border: 2px; border-color: #2d272c; border-radius: 8px; }
+element-icon { size: 210px; horizontal-align: 0.5; }
+element-text { horizontal-align: 0.5; }
+element selected.normal, element selected.active { background-color: #3c343a; border-color: #e4b3c1; }
+element normal.active { text-color: #e4b3c1; }

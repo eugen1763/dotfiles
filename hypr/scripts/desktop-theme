@@ -1,0 +1,138 @@
+#!/usr/bin/env python3
+"""Choose a desktop theme; wallpaper, borders, bar and lock screen."""
+import argparse
+import fcntl
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
+
+ROOT = Path.home() / '.config/hypr/themes'
+
+
+def run(*args):
+    result = subprocess.run(args, text=True, capture_output=True, timeout=15)
+    if result.returncode:
+        raise RuntimeError(result.stderr.strip() or result.stdout.strip() or f'{args[0]} failed')
+    return result.stdout.strip()
+
+
+def hypr(*args):
+    output = run('hyprctl', *args)
+    if output != 'ok' and not (args[0] == 'hyprpaper' and not output):
+        raise RuntimeError(output or 'Empty response from Hyprland')
+
+
+def current():
+    return (ROOT / 'current').resolve().name
+
+
+def select(theme_id):
+    pending = ROOT / f'.current-{os.getpid()}'
+    try:
+        pending.symlink_to(theme_id, target_is_directory=True)
+        pending.replace(ROOT / 'current')
+    finally:
+        pending.unlink(missing_ok=True)
+
+
+def wallpaper(theme_id, monitors):
+    path = (ROOT / theme_id / 'wallpaper.png').resolve()
+    # Set fallback for newly connected outputs as well as all current outputs.
+    for monitor in ['', *[m['name'] for m in monitors]]:
+        hypr('hyprpaper', 'wallpaper', f'{monitor},{path},cover')
+    active = run('hyprctl', 'hyprpaper', 'listactive')
+    for monitor in monitors:
+        if f"{monitor['name']}: {path}" not in active.splitlines():
+            raise RuntimeError(f"Wallpaper did not update on {monitor['name']}")
+
+
+def refresh_bar():
+    # USR2 is Waybar's supported reload signal; don't start a duplicate bar.
+    result = subprocess.run(['pkill', '-USR2', '-u', str(os.getuid()), '-x', 'waybar'])
+    if result.returncode not in (0, 1):
+        raise RuntimeError('Could not reload Waybar')
+
+
+def apply(theme_id, catalog):
+    if theme_id not in catalog:
+        raise RuntimeError(f'Unknown theme: {theme_id}. Use desktop-theme list.')
+    for name in ('wallpaper.png', 'colors.css', 'hyprland.lua', 'hyprland.conf', 'hyprlock.conf', 'picker.rasi'):
+        if not (ROOT / theme_id / name).is_file():
+            raise RuntimeError(f'Theme is incomplete: {theme_id}/{name}')
+    with (ROOT / '.switch.lock').open('w') as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        monitors = json.loads(run('hyprctl', 'monitors', '-j'))
+        # Verify both services before changing the persisted selection.
+        run('hyprctl', 'hyprpaper', 'listactive')
+        previous = current()
+        try:
+            select(theme_id)
+            hypr('reload', 'config-only')
+            errors = run('hyprctl', 'configerrors')
+            if errors:
+                raise RuntimeError('Hyprland config error: ' + errors)
+            wallpaper(theme_id, monitors)
+            refresh_bar()
+        except Exception:
+            select(previous)
+            try:
+                hypr('reload', 'config-only')
+                wallpaper(previous, monitors)
+                refresh_bar()
+            except Exception as rollback_error:
+                print(f'Could not restore live theme: {rollback_error}', file=sys.stderr)
+            raise
+    print(f'Applied {catalog[theme_id]}')
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('action', nargs='?', default='menu', help='menu, list, current, next, or a theme ID')
+    args = parser.parse_args()
+    entries = json.loads((ROOT / 'catalog.json').read_text())
+    catalog = {entry['id']: entry['name'] for entry in entries}
+    selected = current()
+    if args.action == 'list':
+        print('\n'.join(f"{id}\t{name}" for id, name in catalog.items()))
+        return
+    if args.action == 'current':
+        print(selected)
+        return
+    if args.action == 'menu':
+        ids = list(catalog)
+        rows = [f"{name}\0icon\x1f{ROOT / id / 'wallpaper.png'}" for id, name in catalog.items()]
+        picker = subprocess.run([
+            'rofi', '-no-config', '-dmenu', '-i', '-show-icons', '-p', 'Desktop themes',
+            '-mesg', f'{len(ids)} themes · Type to search · PgUp/PgDn to browse · Enter to apply',
+            '-format', 'i', '-selected-row', str(ids.index(selected)),
+            '-a', str(ids.index(selected)), '-theme', str(ROOT / 'current/picker.rasi'),
+        ], input='\n'.join(rows)+'\n', text=True, capture_output=True)
+        if picker.returncode == 1:
+            return
+        if picker.returncode:
+            raise RuntimeError(picker.stderr.strip() or 'Theme picker failed')
+        try:
+            index = int(picker.stdout.strip())
+        except ValueError:
+            return
+        if index < 0 or index >= len(ids):
+            return
+        theme_id = ids[index]
+    elif args.action == 'next':
+        ids = list(catalog)
+        theme_id = ids[(ids.index(selected) + 1) % len(ids)]
+    else:
+        theme_id = args.action
+    apply(theme_id, catalog)
+
+
+if __name__ == '__main__':
+    try:
+        main()
+    except (RuntimeError, OSError, ValueError, subprocess.TimeoutExpired) as error:
+        print(f'desktop-theme: {error}', file=sys.stderr)
+        if os.environ.get('WAYLAND_DISPLAY'):
+            subprocess.run(['notify-send', '-u', 'critical', 'Theme could not be applied', str(error)], check=False)
+        sys.exit(1)
